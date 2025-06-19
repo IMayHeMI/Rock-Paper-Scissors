@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+    <script>
+        const randomizer = Math.round(Math.random() * 100);        
+
+        let humanScore = 0;
+
+        let computerScore = 0;
+
+        function getComputerChoice(n)
+        {
+            let compChoice;
+
+            if (n <= 33)
+                compChoice = "Rock";
+            else if (n >= 34 && n <= 66)
+                compChoice = "Paper";
+            else 
+                compChoice = "Scissors";
+
+            return compChoice;
+        }        
+
+        function getHumanChoice()
+        {
+            const humanChoice = prompt("Enter your choise (Rock, Paper or Scissors)");
+            return humanChoice;
+        }
+
+        function playRound(humanChoice, computerChoice = getComputerChoice)
+        {
+
+        }
+
+        console.log();
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

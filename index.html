@@ -5,39 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
 
-    <script>
-        const randomizer = Math.round(Math.random() * 100);        
-
+    <script>                
         let humanScore = 0;
 
         let computerScore = 0;
 
-        function getComputerChoice(n)
+        function getComputerChoice()
         {
+            let n = Math.round(Math.random() * 100);
             let compChoice;
 
             if (n <= 33)
-                compChoice = "Rock";
+                compChoice = "rock";
             else if (n >= 34 && n <= 66)
-                compChoice = "Paper";
+                compChoice = "paper";
             else 
-                compChoice = "Scissors";
+                compChoice = "scissors";
 
             return compChoice;
         }        
 
         function getHumanChoice()
-        {
-            const humanChoice = prompt("Enter your choise (Rock, Paper or Scissors)");
-            return humanChoice;
+        {            
+            {
+                const input = prompt("Enter your choice (Rock, Paper or Scissors)");
+                if (!input) return null;
+                return input.toLowerCase();
+            }            
         }
 
-        function playRound(humanChoice, computerChoice = getComputerChoice)
+        function playRound(humanChoice, computerChoice)
         {
-
+            if (humanChoice === "rock")
+            {
+                if (computerChoice === "rock")
+                    console.log(`Draw! Both have chosen ${humanChoice}`);
+                else if (computerChoice === "paper")
+                    {
+                    computerScore++;
+                    console.log("You lose! Paper beats Rock")
+                    console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+                    }
+                else
+                    {
+                    humanScore++;
+                    console.log("You win! Rock beats Scissors")
+                    console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+                    }
+            }
+            else if (humanChoice === "paper")
+            {
+                if (computerChoice === "paper")
+                    console.log(`Draw! Both have chosen ${humanChoice}`);
+                else if (computerChoice === "scissors")
+                    {
+                    computerScore++;
+                    console.log("You lose! Scissors beat Paper")
+                    console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+                    }
+                else
+                    {
+                    humanScore++;
+                    console.log("You win! Paper beats Rock")
+                    console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+                    }
+            }
+            else if (humanChoice === "scissors")
+            {
+                if (computerChoice === "scissors")
+                    console.log(`Draw! Both have chosen ${humanChoice}`);
+                else if (computerChoice === "rock")
+                    {
+                    computerScore++;
+                    console.log("You lose! Rock beats Scissors")
+                    console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+                    }
+                else
+                    {
+                    humanScore++;
+                    console.log("You win! Scissors beats Paper")
+                    console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+                    }
+            }
+            else
+            alert("Incorrect value")
         }
 
-        console.log();
+        //function playGame(humanChoice, computerChoice){}
+
+        console.log("Welcome to Rock, Paper, Scissors game! Computer will automatically make a choice.");
+
+        while(humanScore < 5 && computerScore < 5)
+        {            
+            let pcChoice = getComputerChoice();
+            let humChoice = getHumanChoice();
+            if (!humChoice) 
+            {
+                console.log("Game cancelled by user.");
+                break;
+            }
+            playRound(humChoice, pcChoice);
+        }
+
+        if (humanScore === 5) console.log("Winner, winner, chicken dinner!")
+        if (computerScore === 5) console.log("You lost! Skynet is coming!")
+
     </script>
 
 </head>

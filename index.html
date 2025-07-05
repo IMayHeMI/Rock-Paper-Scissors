@@ -91,29 +91,17 @@
             alert("Incorrect value")
         }
 
-        //function playGame(humanChoice, computerChoice){}
-
         console.log("Welcome to Rock, Paper, Scissors game! Computer will automatically make a choice.");
-
-        while(humanScore < 5 && computerScore < 5)
-        {            
-            let pcChoice = getComputerChoice();
-            let humChoice = getHumanChoice();
-            if (!humChoice) 
-            {
-                console.log("Game cancelled by user.");
-                break;
-            }
-            playRound(humChoice, pcChoice);
-        }
-
-        if (humanScore === 5) console.log("Winner, winner, chicken dinner!")
-        if (computerScore === 5) console.log("You lost! Skynet is coming!")
 
     </script>
 
 </head>
 <body>
-    
+    <h1 class="welcome">Welcome to Rock, Paper, Scissors game!</h1>
+    <h2>Computer will automatically make a choice.</h2>
+
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
 </body>
 </html>

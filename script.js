@@ -1,18 +1,21 @@
 const buttons = document.querySelectorAll("button");
+const result = document.querySelector(".result");
+const score = document.querySelector(".score");
+const announce = document.querySelector(".announce");
 
+let userScore = 0;
+let computerScore = 0;
 let humanChoice = "";
 
 buttons.forEach(button => {
     button.addEventListener("click", event => {
         humanChoice = event.target.id;
-        const compChoice = getComputerChoice();
-        playRound(humanChoice, compChoice);
+        const compChoice = getComputerChoice();        
+        if(userScore < 5 && computerScore < 5)
+            playRound(humanChoice, compChoice);  
+        checkForWinner();           
     });
 });
-
-let humanScore = 0;
-
-let computerScore = 0;
 
 function getComputerChoice()
 {   
@@ -34,55 +37,61 @@ function playRound(humanChoice, computerChoice)
     if (humanChoice === "rock")
     {
         if (computerChoice === "rock")
-            console.log(`Draw! Both have chosen ${humanChoice}`);
+            result.textContent = `RESULT: Draw! Both have chosen ${humanChoice}`;
         else if (computerChoice === "paper")
             {
             computerScore++;
-            console.log("You lose! Paper beats Rock")
-            console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+            result.textContent = "RESULT: You lose! Paper beats rock";
+            score.textContent = `SCORE: You - ${userScore} : ${computerScore} - Computer`;
             }
         else
             {
-            humanScore++;
-            console.log("You win! Rock beats Scissors")
-            console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+            userScore++;
+            result.textContent = "RESULT: You win! Rock beats scissors";
+            score.textContent = `SCORE: You - ${userScore} : ${computerScore} - Computer`;
             }
     }
     else if (humanChoice === "paper")
     {
         if (computerChoice === "paper")
-            console.log(`Draw! Both have chosen ${humanChoice}`);
+            result.textContent = `RESULT: Draw! Both have chosen ${humanChoice}`;
         else if (computerChoice === "scissors")
             {
             computerScore++;
-            console.log("You lose! Scissors beat Paper")
-            console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+            result.textContent = "RESULT: You lose! Scissors beat paper";
+            score.textContent = `SCORE: You - ${userScore} : ${computerScore} - Computer`;
             }
         else
             {
-            humanScore++;
-            console.log("You win! Paper beats Rock")
-            console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+            userScore++;
+            result.textContent = "RESULT: You win! Paper beats rock";
+            score.textContent = `SCORE: You - ${userScore} : ${computerScore} - Computer`;
             }
     }
     else if (humanChoice === "scissors")
     {
         if (computerChoice === "scissors")
-            console.log(`Draw! Both have chosen ${humanChoice}`);
+            result.textContent = `RESULT: Draw! Both have chosen ${humanChoice}`;
         else if (computerChoice === "rock")
             {
             computerScore++;
-            console.log("You lose! Rock beats Scissors")
-            console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+            result.textContent = "RESULT: You lose! Rock beats scissors";
+            score.textContent = `SCORE: You - ${userScore} : ${computerScore} - Computer`;
             }
         else
             {
-            humanScore++;
-            console.log("You win! Scissors beat Paper")
-            console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
+            userScore++;
+            result.textContent = "RESULT: You win! Scissors beat paper";
+            score.textContent = `SCORE: You - ${userScore} : ${computerScore} - Computer`;
             }
     }
 };
+
+function checkForWinner(){
+    if(userScore == 5){announce.textContent = "Winner, winner, chicken dinner! Congrats!"}
+    else if(computerScore == 5){announce.textContent = "You lost! Skynet is coming..."}
+    else return;
+}
 
 
 

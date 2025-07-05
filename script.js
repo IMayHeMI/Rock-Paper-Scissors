@@ -1,3 +1,15 @@
+const buttons = document.querySelectorAll("button");
+
+let humanChoice = "";
+
+buttons.forEach(button => {
+    button.addEventListener("click", event => {
+        humanChoice = event.target.id;
+        const compChoice = getComputerChoice();
+        playRound(humanChoice, compChoice);
+    });
+});
+
 let humanScore = 0;
 
 let computerScore = 0;
@@ -16,15 +28,6 @@ function getComputerChoice()
 
     return compChoice;
 }        
-
-function getHumanChoice()
-{            
-    {
-        const input = prompt("Enter your choice (Rock, Paper or Scissors)");
-        if (!input) return null;
-        return input.toLowerCase();
-    }            
-}
 
 function playRound(humanChoice, computerChoice)
 {
@@ -75,12 +78,11 @@ function playRound(humanChoice, computerChoice)
         else
             {
             humanScore++;
-            console.log("You win! Scissors beats Paper")
+            console.log("You win! Scissors beat Paper")
             console.log(`Your score: ${humanScore}, computer's score: ${computerScore}.`)
             }
     }
-    else
-    alert("Incorrect value")
-}
+};
 
-console.log("Welcome to Rock, Paper, Scissors game! Computer will automatically make a choice.");
+
+
